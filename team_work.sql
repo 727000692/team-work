@@ -4,7 +4,7 @@
  Source Server         : 公用_mysql_8.0_user
  Source Server Type    : MySQL
  Source Server Version : 80027
- Source Host           : 47.99.136.105:3306
+ Source Host           : localhost:3306
  Source Schema         : team_work
 
  Target Server Type    : MySQL
