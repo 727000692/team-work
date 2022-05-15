@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.teamwork.dao.TaskMapper">
+    <insert id="newTasks">
+        insert into sys_task (project_id, create_by, task_name, distribution_by,status, create_time, intro)
+        values (#{project_id},#{create_by},#{task_name},#{distribution_by},#{status},#{create_time},#{intro});
+    </insert>
+    <update id="update">
+        update sys_task
+        set task_name = #{task_name},
+            intro = #{intro},
+            distribution_by = #{distribution_by},
+            status = #{status}
+        where task_id = #{task_id};
+    </update>
+    <update id="receive">
+        update sys_task
+        set distribution_by = #{distribution_by},
+            status = #{status}
+        where task_id = #{task_id};
+    </update>
+    <update id="submit">
+        update sys_task
+        set info = #{info},
+            status = #{status},
+            finish_time = #{finish_time},
+            file_name = #{file_name},
+            file_path = #{file_path}
+        where task_id = #{task_id};
+    </update>
+    <delete id="deleteById">
+        delete
+        from sys_task
+        where task_id = #{task_id};
+    </delete>
+
+
+    <select id="selectTasks" resultType="com.teamwork.pojo.Task">
+        select *
+        from sys_task where project_id = #{project_id} and status = #{status};
+    </select>
+    <select id="TaskNum" resultType="java.lang.Integer">
+        select count(*)
+        from sys_task where project_id = #{project_id};
+    </select>
+    <select id="TaskNumComplete" resultType="java.lang.Integer">
+        select count(*)
+        from sys_task where project_id = #{project_id} and status = '2';
+    </select>
+    <select id="getMyTasks" resultType="com.teamwork.pojo.Task">
+        select *
+        from sys_task where project_id = #{project_id}
+                        and distribution_by =#{distribution_by}
+                        and status = #{status};
+    </select>
+    <select id="getMyTasksAll" resultType="java.lang.Integer">
+        select count(*)
+        from sys_task where project_id = #{project_id}
+                        and distribution_by =#{distribution_by};
+    </select>
+</mapper>

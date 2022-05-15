@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <typeAliases>
+        <package name="com.teamwork.pojo"/>
+    </typeAliases>
+
+    <mappers>
+        <mapper class="com.teamwork.dao.UserMapper"/>
+        <mapper resource="mapper/UserMapper.xml"/>
+
+        <mapper class="com.teamwork.dao.TeamMapper"/>
+        <mapper resource="mapper/TeamMapper.xml"/>
+
+        <mapper class="com.teamwork.dao.TaskMapper"/>
+        <mapper resource="mapper/TaskMapper.xml"/>
+
+        <mapper class="com.teamwork.dao.ProjectMapper"/>
+        <mapper resource="mapper/ProjectMapper.xml"/>
+
+        <mapper class="com.teamwork.dao.MessageMapper"/>
+        <mapper resource="mapper/MessageMapper.xml"/>
+
+    </mappers>
+
+</configuration>

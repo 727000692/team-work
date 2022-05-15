@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.teamwork.dao.ProjectMapper">
+    <insert id="newProject">
+        insert into sys_project (team_id, create_by, project_name, status, create_time,
+                                 file_name, file_path, intro)
+        values (#{team_id},#{create_by},#{project_name},'0',#{create_time},#{file_name},#{file_path},#{intro});
+    </insert>
+    <update id="updateProject">
+        update sys_project
+        set project_name = #{project_name},
+            intro = #{intro}
+        where project_id = #{project_id};
+    </update>
+    <update id="updateFile">
+        update sys_project
+        set project_name = #{project_name},
+            intro = #{intro},
+            file_name = #{file_name},
+            file_path = #{file_path}
+        where project_id = #{project_id};
+    </update>
+    <update id="finishProject">
+        update sys_project
+        set status = '1',
+            finish_time = #{finish_time}
+        where project_id = #{project_id};
+    </update>
+
+
+    <select id="selectProjectByNow" resultType="com.teamwork.pojo.Project">
+        select *
+        from sys_project where team_id=#{team_id} and status = '0';
+    </select>
+    <select id="selectProjects" resultType="com.teamwork.pojo.Project">
+        select *
+        from sys_project where team_id=#{team_id} and status = '1';
+    </select>
+
+</mapper>
